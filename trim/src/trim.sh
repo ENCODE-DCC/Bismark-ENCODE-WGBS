@@ -52,6 +52,6 @@ main() {
     # class.  Run "dx-jobutil-add-output -h" for more information on what it
     # does.
 
-    dx-jobutil-add-output trimmed_reads "$trimmed_reads1" --class=file
-    dx-jobutil-add-output trimmed_reads "$trimmed_reads2" --class=file
+    dx-jobutil-add-output trimmed_reads1 "$trimmed_reads1" --class=file
+    dx-jobutil-add-output trimmed_reads2 "$trimmed_reads2" --class=file
 }
