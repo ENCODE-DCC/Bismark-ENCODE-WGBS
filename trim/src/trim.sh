@@ -17,27 +17,28 @@
 
 main() {
 
-    echo "Value of reads: '${reads[@]}'"
+    echo "Value of  pair 1 reads: '$pair1_reads'"
+    echo "Value of  pair 2 reads: '$pair2_reads'"
 
     # The following line(s) use the dx command-line tool to download your file
     # inputs to the local file system using variable names for the filenames. To
     # recover the original filenames, you can use the output of "dx describe
     # "$variable" --name".
 
-    for i in ${!reads[@]}
-    do
-        filename=`dx describe "${reads[$i]}" --name | cut -d'.' -f1`
-        dx download "${reads[$i]}" -o "$filename".fq.gz
-        echo "uncompressing read file $i ($filename)"
-        gunzip $filename.fq.gz
-    done
+    filename1=`dx describe "$pair1_reads" --name | cut -d'.' -f1`
+    dx download "$pair1_reads" -o "$filename1".fq.gz
+    echo "uncompressing read file 1 ($filename1)"
+    gunzip $filename1.fq.gz
 
+    filename2=`dx describe "$pair2_reads" --name | cut -d'.' -f1`
+    dx download "$pair2_reads" -o "$filename2".fq.gz
+    echo "uncompressing read file 1 ($filename2)"
+    gunzip $filename2.fq.gz
     echo "Reads  downloaded"
 
     mkdir input
-    cat *.fq > all-reads.fq
     outfile="$filename.trimmed-reads.fq.gz"
-    mott-trim.py -q 3 -m 30 -t sanger all-reads.fq | gzip -c > $outfile
+    mott-trim.py -q 3 -m 30 -t sanger | gzip -c > $outfile
 
     echo `ls /home/dnanexus`
     trimmed_reads=$(dx upload /home/dnanexus/$outfile --brief)

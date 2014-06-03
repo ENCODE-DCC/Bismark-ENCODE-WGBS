@@ -10,12 +10,33 @@
   ],
   "inputSpec": [
     {
-      "name": "reads",
-      "label": "The reads that ought to be methylated",
-      "class": "array:file",
+      "name": "pair1_reads",
+      "label": "The reads (pair one) that ought to be methylated",
+      "class": "file",
       "optional": false,
-      "patterns": ["*.gz", "*.tgz"]
-    }
+      "patterns": ["*.gz"]
+    },
+    {
+      "name": "pair2_reads",
+      "label": "The reads (pair two) that ought to be methylated",
+      "class": "file",
+      "optional": false,
+      "patterns": ["*.gz"]
+    },
+    {
+      "name": "min_insert",
+      "label": "Minimum insert size",
+      "class": "int",
+      "optional": true,
+      "default": 0
+    },
+    {
+      "name": "max_insert",
+      "label": "Maximum insert size",
+      "class": "int",
+      "optional": true,
+      "default": 500
+    },
   ],
   "outputSpec": [
     {
