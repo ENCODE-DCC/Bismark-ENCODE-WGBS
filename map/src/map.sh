@@ -58,7 +58,10 @@ main() {
     # to see more options to set metadata.
 
     echo `ls /home/dnanexus/output`
-    outfile="$read_fn".mapped_methylseq.tgz
+    mv output/$read_fn1.gz_bismark_pe.sam output/$read_fn1.fq_bismark.sam
+    # rename necessary to conserve extraction step
+    # creates PE report file which is not used.
+    outfile="$read_fn1".mapped_methylseq.tgz
     tar zcvf $outfile output
     mapped_files=$(dx upload /home/dnanexus/$outfile --brief)
 
