@@ -1,6 +1,6 @@
 {
-  "name": "Bismark-mapper",
-  "title": "Mapping Reads to Converted Genome using Bismark",
+  "name": "Bismark-mapper-paired",
+  "title": "Mapping Reads to Converted Genome using Bismark (paired end reads)",
   "summary": "WGBS ENCODE Pipeline step: Mapping",
   "dxapi": "1.0.0",
   "version": "0.0.1",
@@ -16,8 +16,15 @@
       "patterns": ["*.tgz"]
       },
     {
-      "name": "trimmed_reads",
-      "label": "Prepared Reads",
+      "name": "pair_1",
+      "label": "Prepared Reads for Pair 1",
+      "class": "file",
+      "optional": false,
+      "patterns": ["*.gz"]
+    },
+    {
+      "name": "pair_2",
+      "label": "Prepared Reads for Pair 2",
       "class": "file",
       "optional": false,
       "patterns": ["*.gz"]
@@ -28,7 +35,21 @@
       "class": "file",
       "optional": false,
       "patterns": ["*.gz"]
-      }
+      },
+    {
+      "name": "min_insert",
+      "label": "Minimum insert size",
+      "class": "int",
+      "optional": true,
+      "default": 0
+    },
+    {
+      "name": "max_insert",
+      "label": "Maximum insert size",
+      "class": "int",
+      "optional": true,
+      "default": 500
+    }
   ],
   "outputSpec": [
     {

@@ -21,18 +21,20 @@ main() {
     dx download "$genome" -o genome.fa.gz
     dx download "$meIndex" -o Bisulfite_Genome.tgz
     read_fn=`dx describe "$trimmed_reads" --name | cut -d'.' -f1`
-    dx download "$trimmed_reads" -o "$read_fn".gz
+    dx download "$pair1" -o "$read_fn1".gz
+    dx download "$pair2" -o "$read_fn2".gz
 
     echo "uncompressing files"
     gunzip genome.fa.gz
     tar zxvf Bisulfite_Genome.tgz
-    gunzip -c "$read_fn" > "$read_fn".fq
+    gunzip -c "$read_fn1" > "$read_fn1".fq
+    gunzip -c "$read_fn2" > "$read_fn2".fq
 
     mv genome.fa input
 
     echo `ls input`
     mkdir output
-    bismark -n 1 -l 28 -output_dir output --temp_dir output input "$read_fn".fq
+    bismark -n 1 -l 28 -output_dir output --temp_dir output input -I $min_insert -X $max_insert -1 $read_fn1.gz -2 $read_fn2.gz
 
     # Fill in your application code here.
     #
