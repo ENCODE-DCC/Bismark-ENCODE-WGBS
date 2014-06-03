@@ -37,17 +37,21 @@ main() {
     echo "Reads  downloaded"
 
     mkdir input
-    outfile="$filename.trimmed-reads.fq.gz"
-    mott-trim.py -q 3 -m 30 -t sanger | gzip -c > $outfile
+    outfile1="$filename.trimmed-reads.1.fq"
+    outfile2="$filename.trimmed-reads.2.fq"
+    mott-trim.py -q 3 -m 30 -t sanger $outfile1,$outfile2 $filename1.fq,$filename2.fq
+    gzip *trimmed-reads*.fq
+
 
     echo `ls /home/dnanexus`
-    trimmed_reads=$(dx upload /home/dnanexus/$outfile --brief)
+    trimmed_reads1=$(dx upload /home/dnanexus/$outfile1.gz --brief)
+    trimmed_reads2=$(dx upload /home/dnanexus/$outfile2.gz --brief)
 
     # The following line(s) use the utility dx-jobutil-add-output to format and
     # add output variables to your job's output as appropriate for the output
     # class.  Run "dx-jobutil-add-output -h" for more information on what it
     # does.
-    echo "Adding output -- files should be renamed"
 
-    dx-jobutil-add-output trimmed_reads "$trimmed_reads" --class=file
+    dx-jobutil-add-output trimmed_reads "$trimmed_reads1" --class=file
+    dx-jobutil-add-output trimmed_reads "$trimmed_reads2" --class=file
 }
