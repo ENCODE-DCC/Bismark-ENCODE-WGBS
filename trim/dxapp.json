@@ -1,7 +1,7 @@
 {
-  "name": "Mott Trimmer",
+  "name": "WGBS-Mott Trimmer-paired",
   "title": "Mott Read Trimmer",
-  "summary": "WGBS ENCODE Pipeline step: Read trimming",
+  "summary": "WGBS ENCODE Pipeline step: Read trimming for paired end reads",
   "dxapi": "1.0.0",
   "version": "0.0.1",
   "categories": [
@@ -36,12 +36,17 @@
       "class": "int",
       "optional": true,
       "default": 500
-    },
+    }
   ],
   "outputSpec": [
     {
-      "name": "trimmed_reads",
-      "label": "Mott Trimmed Reads for input into Bismark",
+      "name": "trimmed_reads1",
+      "label": "Mott Trimmed Reads for input into Bismark (1st pair)",
+      "class": "file"
+    },
+    {
+      "name": "trimmed_reads2",
+      "label": "Mott Trimmed Reads for input into Bismark (2nd pair)",
       "class": "file"
     }
   ],

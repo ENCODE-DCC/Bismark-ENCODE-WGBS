@@ -32,13 +32,13 @@ main() {
 
     filename2=`dx describe "$pair2_reads" --name | cut -d'.' -f1`
     dx download "$pair2_reads" -o "$filename2".fq.gz
-    echo "uncompressing read file 1 ($filename2)"
+    echo "uncompressing read file 2 ($filename2)"
     gunzip $filename2.fq.gz
     echo "Reads  downloaded"
 
     mkdir input
-    outfile1="$filename.trimmed-reads.1.fq"
-    outfile2="$filename.trimmed-reads.2.fq"
+    outfile1="$filename1.trimmed-reads.1.fq"
+    outfile2="$filename2.trimmed-reads.2.fq"
     mott-trim.py -q 3 -m 30 -t sanger $outfile1,$outfile2 $filename1.fq,$filename2.fq
     gzip *trimmed-reads*.fq
 
