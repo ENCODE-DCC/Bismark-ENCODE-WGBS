@@ -20,9 +20,10 @@ main() {
     echo "getting files"
     dx download "$genome" -o genome.fa.gz
     dx download "$meIndex" -o Bisulfite_Genome.tgz
-    read_fn=`dx describe "$trimmed_reads" --name | cut -d'.' -f1`
-    dx download "$pair1" -o "$read_fn1".gz
-    dx download "$pair2" -o "$read_fn2".gz
+    read_fn1=`dx describe "$pair_1" --name | cut -d'.' -f1`
+    read_fn2=`dx describe "$pair_2" --name | cut -d'.' -f1`
+    dx download "$pair_1" -o "$read_fn1".gz
+    dx download "$pair_2" -o "$read_fn2".gz
 
     echo "uncompressing files"
     gunzip genome.fa.gz
