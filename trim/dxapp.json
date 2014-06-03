@@ -22,20 +22,6 @@
       "class": "file",
       "optional": false,
       "patterns": ["*.gz"]
-    },
-    {
-      "name": "min_insert",
-      "label": "Minimum insert size",
-      "class": "int",
-      "optional": true,
-      "default": 0
-    },
-    {
-      "name": "max_insert",
-      "label": "Maximum insert size",
-      "class": "int",
-      "optional": true,
-      "default": 500
     }
   ],
   "outputSpec": [
