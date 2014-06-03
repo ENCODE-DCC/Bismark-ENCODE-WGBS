@@ -45,13 +45,13 @@
       "class": "file"
     },
     {
-      "name": "SE_report",
-      "label": "QC report 1 (SE)",
+      "name": "map_report",
+      "label": "Mapping QC report",
       "class": "file"
     },
     {
       "name": "M_bias_report",
-      "label": "QC report 2 (M-Bias)",
+      "label": "M-Biast QC report",
       "class": "file"
     }
   ],
