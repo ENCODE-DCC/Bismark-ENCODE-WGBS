@@ -2,8 +2,8 @@
     "links": [], 
     "inputSpec": [
         {
-            "group": "stage-BJxk89j0y9230j01J5B006PK", 
-            "name": "stage-BJxk89j0y9230j01J5B006PK.genome", 
+            "group": "stage-BK71pVQ0y929QzKxBky019K7", 
+            "name": "stage-BK71pVQ0y929QzKxBky019K7.genome", 
             "label": "A genome", 
             "patterns": [
                 "*.gz"
@@ -12,23 +12,32 @@
             "class": "file"
         }, 
         {
-            "group": "stage-BJxk8Bj0y9230j01J5B006PP", 
-            "name": "stage-BJxk8Bj0y9230j01J5B006PP.reads", 
-            "label": "The reads that ought to be methylated", 
+            "group": "stage-BK71pYj0y929QzKxBky019K8", 
+            "name": "stage-BK71pYj0y929QzKxBky019K8.pair1_reads", 
+            "label": "The reads (pair one) that ought to be methylated", 
             "patterns": [
-                "*.gz", 
-                "*.tgz"
+                "*.gz"
             ], 
             "optional": false, 
-            "class": "array:file"
+            "class": "file"
         }, 
         {
-            "group": "stage-BJxk8F80y9230j01J5B006PQ", 
-            "name": "stage-BJxk8F80y9230j01J5B006PQ.meIndex", 
+            "group": "stage-BK71pYj0y929QzKxBky019K8", 
+            "name": "stage-BK71pYj0y929QzKxBky019K8.pair2_reads", 
+            "label": "The reads (pair two) that ought to be methylated", 
+            "patterns": [
+                "*.gz"
+            ], 
+            "optional": false, 
+            "class": "file"
+        }, 
+        {
+            "group": "stage-BK72yj00y924GX5Kv46Q119v", 
+            "name": "stage-BK72yj00y924GX5Kv46Q119v.meIndex", 
             "default": {
                 "$dnanexus_link": {
                     "outputField": "meIndex", 
-                    "stage": "stage-BJxk89j0y9230j01J5B006PK"
+                    "stage": "stage-BK71pVQ0y929QzKxBky019K7"
                 }
             }, 
             "label": "A directory of converted genome files (C->T, G->A)", 
@@ -39,15 +48,15 @@
             "class": "file"
         }, 
         {
-            "group": "stage-BJxk8F80y9230j01J5B006PQ", 
-            "name": "stage-BJxk8F80y9230j01J5B006PQ.trimmed_reads", 
+            "group": "stage-BK72yj00y924GX5Kv46Q119v", 
+            "name": "stage-BK72yj00y924GX5Kv46Q119v.pair_1", 
             "default": {
                 "$dnanexus_link": {
-                    "outputField": "trimmed_reads", 
-                    "stage": "stage-BJxk8Bj0y9230j01J5B006PP"
+                    "outputField": "trimmed_reads1", 
+                    "stage": "stage-BK71pYj0y929QzKxBky019K8"
                 }
             }, 
-            "label": "Prepared Reads", 
+            "label": "Prepared Reads for Pair 1", 
             "patterns": [
                 "*.gz"
             ], 
@@ -55,12 +64,28 @@
             "class": "file"
         }, 
         {
-            "group": "stage-BJxk8F80y9230j01J5B006PQ", 
-            "name": "stage-BJxk8F80y9230j01J5B006PQ.genome", 
+            "group": "stage-BK72yj00y924GX5Kv46Q119v", 
+            "name": "stage-BK72yj00y924GX5Kv46Q119v.pair_2", 
+            "default": {
+                "$dnanexus_link": {
+                    "outputField": "trimmed_reads2", 
+                    "stage": "stage-BK71pYj0y929QzKxBky019K8"
+                }
+            }, 
+            "label": "Prepared Reads for Pair 2", 
+            "patterns": [
+                "*.gz"
+            ], 
+            "optional": false, 
+            "class": "file"
+        }, 
+        {
+            "group": "stage-BK72yj00y924GX5Kv46Q119v", 
+            "name": "stage-BK72yj00y924GX5Kv46Q119v.genome", 
             "default": {
                 "$dnanexus_link": {
                     "inputField": "genome", 
-                    "stage": "stage-BJxk89j0y9230j01J5B006PK"
+                    "stage": "stage-BK71pVQ0y929QzKxBky019K7"
                 }
             }, 
             "label": "A genome", 
@@ -71,12 +96,28 @@
             "class": "file"
         }, 
         {
-            "group": "stage-BJxxJF80y92Jb8qpjjgQ003p", 
-            "name": "stage-BJxxJF80y92Jb8qpjjgQ003p.genome", 
+            "group": "stage-BK72yj00y924GX5Kv46Q119v", 
+            "name": "stage-BK72yj00y924GX5Kv46Q119v.min_insert", 
+            "default": 0, 
+            "label": "Minimum insert size", 
+            "optional": true, 
+            "class": "int"
+        }, 
+        {
+            "group": "stage-BK72yj00y924GX5Kv46Q119v", 
+            "name": "stage-BK72yj00y924GX5Kv46Q119v.max_insert", 
+            "default": 500, 
+            "label": "Maximum insert size", 
+            "optional": true, 
+            "class": "int"
+        }, 
+        {
+            "group": "stage-BK72yjQ0y924GX5Kv46Q119x", 
+            "name": "stage-BK72yjQ0y924GX5Kv46Q119x.genome", 
             "default": {
                 "$dnanexus_link": {
                     "inputField": "genome", 
-                    "stage": "stage-BJxk89j0y9230j01J5B006PK"
+                    "stage": "stage-BK71pVQ0y929QzKxBky019K7"
                 }
             }, 
             "label": "A genome", 
@@ -87,12 +128,12 @@
             "class": "file"
         }, 
         {
-            "group": "stage-BJxxJF80y92Jb8qpjjgQ003p", 
-            "name": "stage-BJxxJF80y92Jb8qpjjgQ003p.mapped_files", 
+            "group": "stage-BK72yjQ0y924GX5Kv46Q119x", 
+            "name": "stage-BK72yjQ0y924GX5Kv46Q119x.mapped_files", 
             "default": {
                 "$dnanexus_link": {
                     "outputField": "mapped_files", 
-                    "stage": "stage-BJxk8F80y9230j01J5B006PQ"
+                    "stage": "stage-BK72yj00y924GX5Kv46Q119v"
                 }
             }, 
             "label": "tgz file of mapped bismark outputs", 
@@ -102,67 +143,73 @@
             "class": "file"
         }
     ], 
-    "id": "workflow-BJbFgbj0y92JZ41P44VQ0B8f", 
-    "title": "WGBS ENCODE Bismark Workflow", 
+    "id": "workflow-BK71kQ80y929QzKxBky019J9", 
+    "title": "WGBS ENCODE Bismark Workflow (paired end)", 
     "class": "workflow", 
     "state": "open", 
-    "editVersion": 64, 
+    "editVersion": 38, 
     "folder": "/", 
     "description": "", 
     "tags": [], 
     "outputSpec": [
         {
             "label": "Converted Genome Index", 
-            "group": "stage-BJxk89j0y9230j01J5B006PK", 
-            "name": "stage-BJxk89j0y9230j01J5B006PK.meIndex", 
+            "group": "stage-BK71pVQ0y929QzKxBky019K7", 
+            "name": "stage-BK71pVQ0y929QzKxBky019K7.meIndex", 
             "class": "file"
         }, 
         {
-            "label": "Mott Trimmed Reads for input into Bismark", 
-            "group": "stage-BJxk8Bj0y9230j01J5B006PP", 
-            "name": "stage-BJxk8Bj0y9230j01J5B006PP.trimmed_reads", 
+            "label": "Mott Trimmed Reads for input into Bismark (1st pair)", 
+            "group": "stage-BK71pYj0y929QzKxBky019K8", 
+            "name": "stage-BK71pYj0y929QzKxBky019K8.trimmed_reads1", 
+            "class": "file"
+        }, 
+        {
+            "label": "Mott Trimmed Reads for input into Bismark (2nd pair)", 
+            "group": "stage-BK71pYj0y929QzKxBky019K8", 
+            "name": "stage-BK71pYj0y929QzKxBky019K8.trimmed_reads2", 
             "class": "file"
         }, 
         {
             "label": "tgz file of mapped bismark outputs", 
-            "group": "stage-BJxk8F80y9230j01J5B006PQ", 
-            "name": "stage-BJxk8F80y9230j01J5B006PQ.mapped_files", 
+            "group": "stage-BK72yj00y924GX5Kv46Q119v", 
+            "name": "stage-BK72yj00y924GX5Kv46Q119v.mapped_files", 
             "class": "file"
         }, 
         {
             "label": "CG methyation BED file", 
-            "group": "stage-BJxxJF80y92Jb8qpjjgQ003p", 
-            "name": "stage-BJxxJF80y92Jb8qpjjgQ003p.CG", 
+            "group": "stage-BK72yjQ0y924GX5Kv46Q119x", 
+            "name": "stage-BK72yjQ0y924GX5Kv46Q119x.CG", 
             "class": "file"
         }, 
         {
             "label": "CHG methyation BED file", 
-            "group": "stage-BJxxJF80y92Jb8qpjjgQ003p", 
-            "name": "stage-BJxxJF80y92Jb8qpjjgQ003p.CHG", 
+            "group": "stage-BK72yjQ0y924GX5Kv46Q119x", 
+            "name": "stage-BK72yjQ0y924GX5Kv46Q119x.CHG", 
             "class": "file"
         }, 
         {
             "label": "CHH methyation BED file", 
-            "group": "stage-BJxxJF80y92Jb8qpjjgQ003p", 
-            "name": "stage-BJxxJF80y92Jb8qpjjgQ003p.CHH", 
+            "group": "stage-BK72yjQ0y924GX5Kv46Q119x", 
+            "name": "stage-BK72yjQ0y924GX5Kv46Q119x.CHH", 
             "class": "file"
         }, 
         {
             "label": "the sam file", 
-            "group": "stage-BJxxJF80y92Jb8qpjjgQ003p", 
-            "name": "stage-BJxxJF80y92Jb8qpjjgQ003p.mapped_reads", 
+            "group": "stage-BK72yjQ0y924GX5Kv46Q119x", 
+            "name": "stage-BK72yjQ0y924GX5Kv46Q119x.mapped_reads", 
             "class": "file"
         }, 
         {
-            "label": "QC report 1 (SE)", 
-            "group": "stage-BJxxJF80y92Jb8qpjjgQ003p", 
-            "name": "stage-BJxxJF80y92Jb8qpjjgQ003p.SE_report", 
+            "label": "Mapping QC report", 
+            "group": "stage-BK72yjQ0y924GX5Kv46Q119x", 
+            "name": "stage-BK72yjQ0y924GX5Kv46Q119x.map_report", 
             "class": "file"
         }, 
         {
-            "label": "QC report 2 (M-Bias)", 
-            "group": "stage-BJxxJF80y92Jb8qpjjgQ003p", 
-            "name": "stage-BJxxJF80y92Jb8qpjjgQ003p.M_bias_report", 
+            "label": "M-Biast QC report", 
+            "group": "stage-BK72yjQ0y924GX5Kv46Q119x", 
+            "name": "stage-BK72yjQ0y924GX5Kv46Q119x.M_bias_report", 
             "class": "file"
         }
     ], 
@@ -174,9 +221,9 @@
     "properties": {}, 
     "types": [], 
     "hidden": false, 
-    "name": "WGBS ENCODE Bismark Workflow", 
-    "created": 1399503831000, 
-    "modified": 1399504283137, 
+    "name": "WGBS ENCODE Bismark Workflow (paired end)", 
+    "created": 1401822401000, 
+    "modified": 1401822605256, 
     "summary": "", 
     "project": "project-BJ8qBG80y921bxpfZ99Q090F", 
     "stages": [
@@ -188,21 +235,21 @@
             "executionPolicy": {}, 
             "input": {}, 
             "folder": null, 
-            "id": "stage-BJxk89j0y9230j01J5B006PK"
+            "id": "stage-BK71pVQ0y929QzKxBky019K7"
         }, 
         {
             "accessible": true, 
-            "executable": "applet-BJxFZGQ0y924y53FY9P001py", 
+            "executable": "applet-BK70QpQ0y929QzKxBky018F2", 
             "name": null, 
             "systemRequirements": {}, 
             "executionPolicy": {}, 
             "input": {}, 
             "folder": null, 
-            "id": "stage-BJxk8Bj0y9230j01J5B006PP"
+            "id": "stage-BK71pYj0y929QzKxBky019K8"
         }, 
         {
             "accessible": true, 
-            "executable": "applet-BJxG8zQ0y926y2J9q5jQ0Y32", 
+            "executable": "applet-BK72QG00y929QzKxBky019Y5", 
             "name": null, 
             "systemRequirements": {}, 
             "executionPolicy": {}, 
@@ -210,28 +257,34 @@
                 "meIndex": {
                     "$dnanexus_link": {
                         "outputField": "meIndex", 
-                        "stage": "stage-BJxk89j0y9230j01J5B006PK"
+                        "stage": "stage-BK71pVQ0y929QzKxBky019K7"
                     }
                 }, 
                 "genome": {
                     "$dnanexus_link": {
                         "inputField": "genome", 
-                        "stage": "stage-BJxk89j0y9230j01J5B006PK"
+                        "stage": "stage-BK71pVQ0y929QzKxBky019K7"
                     }
                 }, 
-                "trimmed_reads": {
+                "pair_1": {
                     "$dnanexus_link": {
-                        "outputField": "trimmed_reads", 
-                        "stage": "stage-BJxk8Bj0y9230j01J5B006PP"
+                        "outputField": "trimmed_reads1", 
+                        "stage": "stage-BK71pYj0y929QzKxBky019K8"
+                    }
+                }, 
+                "pair_2": {
+                    "$dnanexus_link": {
+                        "outputField": "trimmed_reads2", 
+                        "stage": "stage-BK71pYj0y929QzKxBky019K8"
                     }
                 }
             }, 
             "folder": null, 
-            "id": "stage-BJxk8F80y9230j01J5B006PQ"
+            "id": "stage-BK72yj00y924GX5Kv46Q119v"
         }, 
         {
             "accessible": true, 
-            "executable": "applet-BJxqvpQ0y9269JbgJ9B0204j", 
+            "executable": "applet-BK72vPQ0y929QzKxBky019p5", 
             "name": null, 
             "systemRequirements": {}, 
             "executionPolicy": {}, 
@@ -239,18 +292,18 @@
                 "genome": {
                     "$dnanexus_link": {
                         "inputField": "genome", 
-                        "stage": "stage-BJxk89j0y9230j01J5B006PK"
+                        "stage": "stage-BK71pVQ0y929QzKxBky019K7"
                     }
                 }, 
                 "mapped_files": {
                     "$dnanexus_link": {
                         "outputField": "mapped_files", 
-                        "stage": "stage-BJxk8F80y9230j01J5B006PQ"
+                        "stage": "stage-BK72yj00y924GX5Kv46Q119v"
                     }
                 }
             }, 
             "folder": null, 
-            "id": "stage-BJxxJF80y92Jb8qpjjgQ003p"
+            "id": "stage-BK72yjQ0y924GX5Kv46Q119x"
         }
     ]
 }
